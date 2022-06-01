@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PostForm from "./post-form";
 import PostList from "./post-list";
+import { PostsContext, UserContext } from "./post-context";
 
 export default function PostApp() {
   const [posts, setPosts] = useState([]);
@@ -25,19 +26,33 @@ export default function PostApp() {
     setPosts([newPost, ...posts]);
   };
 
+  const onDeletePost = (postToBeDeteled) => {
+    console.log("post to be deleted", postToBeDeteled);
+    let filteredPosts = posts.filter((item) => {
+      return item.id != postToBeDeteled.id;
+    });
+
+    setPosts(filteredPosts);
+  };
+
   const toggleAddNew = () => {
     setShowAddForm(!showAddForm);
   };
 
   return (
     <div>
-      <div>{showAddForm && <PostForm onAddNewPost={onAddNewPost} />}</div>
-      <div>
-        <button onClick={toggleAddNew}>+</button>
-      </div>
-      <div>
-        <PostList posts={posts} />
-      </div>
+      <PostsContext.Provider value={{ onDeletePost }}>
+        <UserContext.Provider value={"Urvashi Sachdev"}>
+          <div>{showAddForm && <PostForm onAddNewPost={onAddNewPost} />}</div>
+          <div>
+            <button onClick={toggleAddNew}>+</button>
+          </div>
+          <div>
+            {/* <PostList posts={posts} onDeletePost={onDeletePost} /> */}
+            <PostList posts={posts} />
+          </div>
+        </UserContext.Provider>
+      </PostsContext.Provider>
     </div>
   );
 }

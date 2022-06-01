@@ -17,3 +17,8 @@ li.post {
   font-weight: 600;
   color: blue;
 }
+
+.delete {
+  background-color: red;
+  color: white;
+}
