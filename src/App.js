@@ -1,8 +1,9 @@
 // import logo from "./logo.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-// import Counter from "./components/counter";
-import Posts from "./components/posts";
+import Counter from "./components/use-effect/counter";
+import Posts from "./components/use-effect/posts";
+import PostApp from "./components/postapp/post-app";
 
 function App() {
   const [show, setShow] = useState(true);
@@ -15,9 +16,11 @@ function App() {
     <div className="App">
       <h2>My First React App</h2>
       {/* {show && <Counter />}
+
       <button onClick={toggleCounter}>Toggle Counter</button> */}
 
-      <Posts />
+      {/* <Posts /> */}
+      <PostApp />
     </div>
   );
 }

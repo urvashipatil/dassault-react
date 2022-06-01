@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Counter = () => {
   const [counter, setCounter] = useState(0);
   const [input, setInput] = useState("");
   const [windowWidth, setWindowWidth] = useState(0);
+
+  const prevCounter = useRef();
+
+  useEffect(() => {
+    prevCounter.current = counter;
+  });
 
   //It will get called on each render
   // useEffect(() => {
@@ -56,6 +62,7 @@ const Counter = () => {
   return (
     <div className="counter">
       <h1>{counter}</h1>
+      <h3>Previous counter = {prevCounter.current}</h3>
       <div>
         <input
           type="text"
