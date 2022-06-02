@@ -21,6 +21,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import PrivateRoute from "./components/private-route";
 import ReactMemoApp from "./components/memoize/react-memo-app";
 import UseCallBackApp from "./components/memoize/use-callback-app";
+import Search from "./components/search";
 const Counter = React.lazy(() => import("./components/use-effect/counter"));
 const PostApp = React.lazy(() => import("./components/postapp/post-app"));
 
@@ -84,6 +85,11 @@ function App() {
             UseCallback
           </NavLink>
         </div>
+        <div>
+          <NavLink activeClassName="activ-nav" to="/debounce">
+            Debounce
+          </NavLink>
+        </div>
         <Switch>
           <Route path="/" exact>
             <Greeting name="Urvashi" />
@@ -116,7 +122,9 @@ function App() {
           <Route path="/usecallback" exact>
             <UseCallBackApp />
           </Route>
-
+          <Route path="/debounce" exact>
+            <Search />
+          </Route>
           <Route component={() => <h3>Invalid path</h3>}></Route>
         </Switch>
       </Router>

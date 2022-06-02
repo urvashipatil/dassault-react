@@ -1,15 +1,22 @@
 import { useEffect, useState, useRef } from "react";
+// import useDocumentTitle from "../custom-hooks/use-document-title";
+import useTitle from "../custom-hooks/use-title";
 
 const Counter = () => {
   const [counter, setCounter] = useState(0);
   const [input, setInput] = useState("");
   const [windowWidth, setWindowWidth] = useState(0);
-
   const prevCounter = useRef();
+  // useDocumentTitle("Counter");
+  const [setTitleCount] = useTitle();
 
   useEffect(() => {
     prevCounter.current = counter;
   });
+
+  useEffect(() => {
+    setTitleCount(counter);
+  }, [counter]);
 
   //It will get called on each render
   // useEffect(() => {
