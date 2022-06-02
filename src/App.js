@@ -8,6 +8,7 @@ import Greeting from "./components/prop-types/greeting";
 import ChildComp from "./components/render-props/child-comp";
 import Datatable from "./components/render-props/datatable";
 import { Image, WithBorder, WithTransparent } from "./components/hoc/image";
+import CounterReducer from "./components/use-reducer/counter-reducer";
 
 function App() {
   const [show, setShow] = useState(true);
@@ -43,9 +44,11 @@ function App() {
       {/* <ChildComp render={() => <h3>My child comp</h3>} /> */}
       {/* <Datatable rows={rows} /> */}
 
-      <Image src={"/images/logo192.png"} />
+      {/* <Image src={"/images/logo192.png"} />
       <WithBorderImage src={"/images/logo192.png"} />
-      <WithBorderTransperancyImage src={"/images/logo192.png"} />
+      <WithBorderTransperancyImage src={"/images/logo192.png"} /> */}
+
+      <CounterReducer />
     </div>
   );
 }
