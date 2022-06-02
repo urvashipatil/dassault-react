@@ -1,5 +1,5 @@
 // import logo from "./logo.svg";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -8,9 +8,9 @@ import {
   NavLink,
 } from "react-router-dom";
 import "./App.css";
-import Counter from "./components/use-effect/counter";
+// import Counter from "./components/use-effect/counter";
 import Posts from "./components/use-effect/posts";
-import PostApp from "./components/postapp/post-app";
+// import PostApp from "./components/postapp/post-app";
 import Greeting from "./components/prop-types/greeting";
 import ChildComp from "./components/render-props/child-comp";
 import Datatable from "./components/render-props/datatable";
@@ -19,6 +19,10 @@ import CounterReducer from "./components/use-reducer/counter-reducer";
 import PostDetails from "./components/postapp/post-details";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import PrivateRoute from "./components/private-route";
+import ReactMemoApp from "./components/memoize/react-memo-app";
+import UseCallBackApp from "./components/memoize/use-callback-app";
+const Counter = React.lazy(() => import("./components/use-effect/counter"));
+const PostApp = React.lazy(() => import("./components/postapp/post-app"));
 
 function App() {
   const [show, setShow] = useState(true);
@@ -65,6 +69,21 @@ function App() {
             Post App
           </NavLink>
         </div>
+        <div>
+          <NavLink activeClassName="activ-nav" to="/renderprop">
+            Render Prop
+          </NavLink>
+        </div>
+        <div>
+          <NavLink activeClassName="activ-nav" to="/memo">
+            React.memo
+          </NavLink>
+        </div>
+        <div>
+          <NavLink activeClassName="activ-nav" to="/usecallback">
+            UseCallback
+          </NavLink>
+        </div>
         <Switch>
           <Route path="/" exact>
             <Greeting name="Urvashi" />
@@ -78,15 +97,26 @@ function App() {
           </Route> */}
 
           <PrivateRoute path="/counter" exact isLoggedIn={login}>
-            <Counter />
+            <Suspense fallback={<h2>Loading...</h2>}>
+              <Counter />
+            </Suspense>
           </PrivateRoute>
-          <PrivateRoute
-            path="/postapp"
-            exact
-            component={PostApp}
-            isLoggedIn={login}
-          />
+          <PrivateRoute path="/postapp" exact isLoggedIn={login}>
+            <Suspense fallback={<h2>Loading...</h2>}>
+              <PostApp />
+            </Suspense>
+          </PrivateRoute>
           <Route path="/post/:postid" component={PostDetails} />
+          <Route path="/renderprop" exact>
+            <Datatable rows={rows} />
+          </Route>
+          <Route path="/memo" exact>
+            <ReactMemoApp />
+          </Route>
+          <Route path="/usecallback" exact>
+            <UseCallBackApp />
+          </Route>
+
           <Route component={() => <h3>Invalid path</h3>}></Route>
         </Switch>
       </Router>

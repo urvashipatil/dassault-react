@@ -15,3 +15,13 @@
   color: red;
   font-weight: 700;
 }
+
+.container {
+  padding: 5%;
+}
+.child {
+  padding: 0.25rem;
+  border: 2px solid black;
+  width: 200px;
+  height: 100px;
+}
