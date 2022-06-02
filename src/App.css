@@ -9,3 +9,9 @@
 .transparent {
   opacity: 0.4;
 }
+
+.activ-nav {
+  background-color: yellow;
+  color: red;
+  font-weight: 700;
+}

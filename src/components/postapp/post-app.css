@@ -16,6 +16,7 @@ li.post {
 .post .title {
   font-weight: 600;
   color: blue;
+  cursor: pointer;
 }
 
 .delete {
