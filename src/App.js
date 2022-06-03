@@ -23,6 +23,10 @@ import ReactMemoApp from "./components/memoize/react-memo-app";
 import UseCallBackApp from "./components/memoize/use-callback-app";
 import Search from "./components/search";
 import ErrorBoundary from "./components/error-boundary";
+import CompoundedApp from "./components/compounded-component/compounded-app";
+import { Provider } from "react-redux";
+import counterStore from "./components/redux/counter-store";
+import ReduxCounter from "./components/redux/redux-counter";
 
 const Counter = React.lazy(() => import("./components/use-effect/counter"));
 const PostApp = React.lazy(() => import("./components/postapp/post-app"));
@@ -92,6 +96,16 @@ function App() {
             Debounce
           </NavLink>
         </div>
+        <div>
+          <NavLink activeClassName="activ-nav" to="/compounded">
+            Compunded component
+          </NavLink>
+        </div>
+        <div>
+          <NavLink activeClassName="activ-nav" to="/reduxcounter">
+            Redux Counter
+          </NavLink>
+        </div>
         <Switch>
           <Route path="/" exact>
             <Greeting name="Urvashi" />
@@ -133,6 +147,14 @@ function App() {
                 <Counter />
               </ErrorBoundary> */}
             </>
+          </Route>
+          <Route path="/compounded" exact>
+            <CompoundedApp />
+          </Route>
+          <Route path="/reduxcounter" exact>
+            <Provider store={counterStore}>
+              <ReduxCounter />
+            </Provider>
           </Route>
           <Route component={() => <h3>Invalid path</h3>}></Route>
         </Switch>
