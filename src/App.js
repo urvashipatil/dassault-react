@@ -22,6 +22,8 @@ import PrivateRoute from "./components/private-route";
 import ReactMemoApp from "./components/memoize/react-memo-app";
 import UseCallBackApp from "./components/memoize/use-callback-app";
 import Search from "./components/search";
+import ErrorBoundary from "./components/error-boundary";
+
 const Counter = React.lazy(() => import("./components/use-effect/counter"));
 const PostApp = React.lazy(() => import("./components/postapp/post-app"));
 
@@ -123,7 +125,14 @@ function App() {
             <UseCallBackApp />
           </Route>
           <Route path="/debounce" exact>
-            <Search />
+            <>
+              <ErrorBoundary>
+                <Search />
+              </ErrorBoundary>
+              {/* <ErrorBoundary>
+                <Counter />
+              </ErrorBoundary> */}
+            </>
           </Route>
           <Route component={() => <h3>Invalid path</h3>}></Route>
         </Switch>
