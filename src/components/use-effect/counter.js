@@ -14,9 +14,9 @@ const Counter = () => {
     prevCounter.current = counter;
   });
 
-  useEffect(() => {
-    setTitleCount(counter);
-  }, [counter]);
+  // useEffect(() => {
+  //   setTitleCount(counter);
+  // }, [counter]);
 
   //It will get called on each render
   // useEffect(() => {
@@ -60,6 +60,7 @@ const Counter = () => {
 
   function increment() {
     setCounter(counter + 1);
+    setTitleCount(counter + 1);
   }
 
   function decrement() {

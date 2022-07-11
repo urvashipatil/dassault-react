@@ -19,7 +19,8 @@ const CounterReducer = () => {
 
   function increment() {
     // setCounter(counter + 1);
-    dispatch({ type: "dummy", payload: 5 });
+    dispatch({ type: "INCREMENT", payload: 5 });
+    // dispatch({ type: "INCREMENT", payload: 10 });
   }
 
   function decrement() {

@@ -121,6 +121,7 @@ function App() {
           <PrivateRoute path="/counter" exact isLoggedIn={login}>
             <Suspense fallback={<h2>Loading...</h2>}>
               <Counter />
+              {/* <CounterReducer /> */}
             </Suspense>
           </PrivateRoute>
           <PrivateRoute path="/postapp" exact isLoggedIn={login}>
